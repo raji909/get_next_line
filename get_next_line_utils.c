@@ -12,59 +12,49 @@
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+size_t	ft_strlen(const char *s)
 {
-	size_t	i;
-	size_t	len1;
-	size_t	len2;
-	char	*s;
-
-	if (!s1 || !s2)
-		return (NULL);
-	i = 0;
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	s = malloc(sizeof(char) * (len1 + len2 + 1));
-	if (!s)
-		return (NULL);
-	while (*s1)
-		s[i++] = *(s1++);
-	while (*s2)
-		s[i++] = *(s2++);
-	s[i] = '\0';
-	free(s1);
-	free(s2);
-	return (s);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	size_t	i;
 	size_t	len;
-	char	*s;
 
-	if (!s1)
-		return (NULL);
-	i = 0;
-	len = ft_strlen(s1);
-	s = malloc(sizeof(char) * (len + 1));
-	if (!s)
-		return (NULL);
-	while (i < len)
-		s[i] = s1[i++];
-	s[i] = '\0';
-	return s;
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
 
-void	*ft_strmove(char *dest, const char *src, size_t n)
+char    *ft_strjoin(char const *s1, char const *s2)
 {
-	if (!dest && !src)
-		return (NULL);
-	dest[n] = '\0';
-	while (n > 0)
-	{
-		dest[n] = src[n];
-		n--;
-	}
-	return (dest);
+    size_t  i = 0;
+    size_t  j = 0;
+    char    *s;
+
+    s = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+    if (!s)
+        return (NULL);
+
+    while (s1[i])
+    {
+        s[i] = s1[i];
+        i++;
+    }
+    while (s2[j])
+    {
+        s[i + j] = s2[j];
+        j++;
+    }
+    s[i + j] = '\0';
+    return (s);
+}
+
+char    *ft_strmove(char *dest, const char *src)
+{
+    size_t i = 0;
+
+    while (src[i])
+    {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = '\0';
+    return (dest);
 }

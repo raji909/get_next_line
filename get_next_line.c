@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 boolean	ft_search(char *s)
 {
@@ -22,31 +23,44 @@ boolean	ft_search(char *s)
 		if (s[i] == '\n')
 		{
 			s[i] = '\0';
-			ft_strmove(s, &s[i], BUFFER_SIZE - i);
 			return (1);
 		}
+		i++;
 	}
 	return (0);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*read_;
-	char		*buffer;
+	char		*tmp;
+	char		*read_;
+	static char	buffer[BUFFER_SIZE];
 	boolean		lin_not_end;
 
-	read_ = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer || !read_)
+	read_ = malloc(sizeof(char) * (BUFFER_SIZE));
+	if (!read_)
 		return (NULL);
-	read_[BUFFER_SIZE] = '\0';
-	buffer[BUFFER_SIZE] = '\0';
+	read_[0] = '\0';
 	lin_not_end = 1;
 	while (lin_not_end)
 	{
-		buffer = read(fd, buffer, BUFFER_SIZE);
+		tmp = read_;
 		if (ft_search(buffer))
 			lin_not_end = 0;
-		read_ = ft_strjoin(read_, buffer);
+		read_ = ft_strjoin(tmp, buffer);
+		free (tmp);
+		if (!read_)
+			return (NULL);
+		size_t r = read(fd, buffer, BUFFER_SIZE - 1);
+		if (r <= 0)
+		{
+		    buffer[0] = '\0';
+		    return (read_);
+		}
+		buffer[r] = '\0';
+		if (!buffer[0])
+			return (NULL);
 	}
+	ft_strmove(buffer, &buffer[ft_strlen(buffer) + 1]);
+	return (read_);
 }
