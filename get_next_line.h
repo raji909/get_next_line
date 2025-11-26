@@ -6,14 +6,16 @@
 /*   By: adraji <adraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 18:14:29 by adraji            #+#    #+#             */
-/*   Updated: 2025/11/25 16:18:25 by adraji           ###   ########.fr       */
+/*   Updated: 2025/11/26 11:05:22 by adraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFFER_SIZE 5
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
 
 # include <stdio.h>
 # include <unistd.h>

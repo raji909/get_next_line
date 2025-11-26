@@ -6,7 +6,7 @@
 /*   By: adraji <adraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:48:07 by adraji            #+#    #+#             */
-/*   Updated: 2025/11/25 19:53:50 by adraji           ###   ########.fr       */
+/*   Updated: 2025/11/26 11:34:03 by adraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 char	*ft_return_null(char *s1, char *s2)
 {
-	free(s1);
-	free(s2);
+	if (s1)
+		free(s1);
+	if (s2)
+		free(s2);
 	return (NULL);
 }
 
@@ -66,6 +68,7 @@ static char	*ft_incorrect_line(int fd, char **new_line, char **rest)
 		free(tmps);
 		*new_line = ft_strchr(incorrect_line, '\n');
 	}
+	free(buffer);
 	return (incorrect_line);
 }
 
@@ -81,7 +84,7 @@ char	*get_next_line(int fd)
 	new_line = NULL;
 	incorrect_line = ft_incorrect_line(fd, &new_line, &rest);
 	if (!incorrect_line || !*incorrect_line)
-		return (NULL);
+		return (ft_return_null(incorrect_line, NULL));
 	if (!new_line)
 	{
 		if (rest)
