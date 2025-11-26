@@ -9,7 +9,7 @@ int main() {
 		int i = 0;
 
     start = clock();
-	int fd = open("text.txt", O_RDONLY);
+	int fd = open("almoharaf.txt", O_RDONLY);
 	char *line = get_next_line(fd);
 	while (line)
 	{
@@ -24,7 +24,7 @@ int main() {
     end = clock();
 
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-    printf("\nrun time: %f second\n", cpu_time_used);
+    printf("\nrun time: %fs\n", cpu_time_used);
 
     return 0;
 }
