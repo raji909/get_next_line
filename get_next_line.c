@@ -49,7 +49,7 @@ char	*ft_preparation(char **buffer, ssize_t *byte)
 }
 
 
-static char	*ft_line(int fd, char **new_line)
+char	*ft_line(int fd, char **new_line)
 {
 	char		*tmp;
 	char		*line;
