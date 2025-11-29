@@ -16,7 +16,8 @@ int	main() {
 		i++;
 		printf("%d: %s", i, line);
 		free(line);
-		line = get_next_line(fd);
+		// line = get_next_line(fd); mandatory
+		// line = get_next_line(9); bonus
 	}
 	free(line);
 	close(fd);

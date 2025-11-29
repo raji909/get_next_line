@@ -6,7 +6,7 @@
 /*   By: adraji <adraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:48:07 by adraji            #+#    #+#             */
-/*   Updated: 2025/11/29 15:30:13 by adraji           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:19:15 by adraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*ft_line(int fd, char **new_line)
 	line = ft_preparation(&buffer[fd], &byte_read);
 	if (!line)
 		return (NULL);
-	while (!(*new_line = ft_strchr(buffer[fd], '\n')) && byte_read < 1)
+	while (!(*new_line = ft_strchr(buffer[fd], '\n')) && byte_read > 0)
 	{
 		tmp = line;
 		byte_read = read(fd, buffer[fd], BUFFER_SIZE);
