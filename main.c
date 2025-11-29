@@ -9,13 +9,13 @@ int	main() {
 		int i = 0;
 
 	start = clock();
-	int fd = open("t2.txt", O_RDONLY);
-	char *line = "";
+	int fd = open("almoharaf.txt", O_RDONLY);
+	char *line = get_next_line(fd);
 	while (line)
 	{
-		line = get_next_line(10);
 		printf("%d: %s", i, line);
 		free(line);
+		line = get_next_line(10);
 		i++;
 	}
 	free(line);
